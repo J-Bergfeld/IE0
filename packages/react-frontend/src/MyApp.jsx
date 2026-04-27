@@ -35,23 +35,23 @@ function MyApp() {
   }, []);
 
   function removeOneCharacter(id) {
-    deleteUser(id)
-      .then((response) => {
-        if (response.status === 204) {
-          const updated = characters.filter((character) => {
-            return character.id !== id;
-          });
-          setCharacters(updated);
-        } else if (response.status === 404) {
-          throw new Error("User not found");
-        } else {
-          throw new Error("Delete failed");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+  deleteUser(id)
+    .then((response) => {
+      if (response.status === 204) {
+        const updated = characters.filter((character) => {
+          return character._id !== id;
+        });
+        setCharacters(updated);
+      } else if (response.status === 404) {
+        throw new Error("User not found");
+      } else {
+        throw new Error("Delete failed");
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
 
   function updateList(person) {
     postUser(person)
